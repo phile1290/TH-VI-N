@@ -58,7 +58,7 @@ async function startServer() {
         parts: [{ text: message }]
       });
 
-      const modelName = process.env.GEMINI_MODEL || "gemini-3.7-flash";
+      const modelName = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
 
       let responseText = "";
       try {
@@ -74,7 +74,7 @@ async function startServer() {
       } catch (genError) {
         console.warn(`Primary model ${modelName} encountered error, trying fallback model...`, genError);
         const fallbackResponse = await ai.models.generateContent({
-          model: "gemini-2.5-flash",
+          model: "gemini-3.1-flash-lite",
           contents: contents,
           config: {
             systemInstruction: SYSTEM_INSTRUCTION,
