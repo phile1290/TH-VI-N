@@ -1,0 +1,6 @@
+{
+  "name": "Thư Viện Trường Tiểu Học Mỹ An",
+  "description": "Website Thư viện số trường Tiểu học Mỹ An với Tủ sách thiếu nhi, đọc trực tuyến, tin tức, bảng vàng và Trợ lý AI Cú Mèo Thông Thái.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
