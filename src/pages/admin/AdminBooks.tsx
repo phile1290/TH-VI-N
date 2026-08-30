@@ -421,7 +421,18 @@ export default function AdminBooks() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tóm tắt ngắn</label>
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tóm tắt ngắn (1-2 câu)</label>
+                  <textarea 
+                    rows={2}
+                    value={bookForm.description || ''}
+                    onChange={e => setBookForm({...bookForm, description: e.target.value})}
+                    placeholder="Mô tả ngắn gọn về cuốn sách..."
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-blue-500 select-auto resize-none"
+                  ></textarea>
+                </div>
+                
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Nội dung toàn bộ sách (Hiển thị khi đọc sách)</label>
                   <RichTextEditor value={bookForm.content || ''} onChange={(val) => setBookForm({...bookForm, content: val})} placeholder="Nhập hoặc dán toàn bộ nội dung (bao gồm hình ảnh) cuốn sách vào đây..." />
                 </div>
               </form>

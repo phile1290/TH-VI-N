@@ -17,8 +17,28 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider = ({ children }: { children: ReactNode }) => {
-  const [books, setBooks] = useState<Book[]>(initialBooks);
-  const [articles, setArticles] = useState<Article[]>(initialArticles);
+  const [books, setBooks] = useState<Book[]>(() => {
+    const saved = localStorage.getItem('library_books');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
+    }
+    return initialBooks;
+  });
+  const [articles, setArticles] = useState<Article[]>(() => {
+    const saved = localStorage.getItem('library_articles');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
+    }
+    return initialArticles;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('library_books', JSON.stringify(books));
+  }, [books]);
+
+  useEffect(() => {
+    localStorage.setItem('library_articles', JSON.stringify(articles));
+  }, [articles]);
 
   const likeBook = (id: string) => {
     setBooks(prev => prev.map(book => {
