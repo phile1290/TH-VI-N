@@ -1,4 +1,6 @@
-import { Outlet, Link, NavLink as RouterNavLink } from 'react-router-dom';
+const fs = require('fs');
+
+const fullContent = `import { Outlet, Link, NavLink as RouterNavLink } from 'react-router-dom';
 import { BookOpen, Star, Trophy, Newspaper, Home, BookHeart, Settings } from 'lucide-react';
 import React, { ReactNode, useState } from 'react';
 import FloatingChatWidget from '../chatbot/FloatingChatWidget';
@@ -60,7 +62,7 @@ export default function MainLayout() {
 
         {/* Refined Navigation Section */}
         <div className="bg-blue-800 w-full shadow-md sticky top-0 z-40 border-b border-blue-900">
-          <nav className="flex justify-center flex-wrap gap-6 md:gap-32 max-w-7xl mx-auto px-4">
+          <nav className="flex justify-center flex-wrap gap-4 md:gap-12 max-w-7xl mx-auto px-4">
             <BlockNavLink to="/" icon={<Home className="w-5 h-5" />} text="Trang chủ" />
             <BlockNavLink to="/books" icon={<BookHeart className="w-5 h-5" />} text="Tủ Sách" />
             <BlockNavLink to="/news" icon={<Newspaper className="w-5 h-5" />} text="Tin Tức" />
@@ -100,11 +102,11 @@ function BlockNavLink({ to, icon, text }: { to: string; icon: ReactNode; text: s
     <RouterNavLink 
       to={to} 
       className={({ isActive }) => 
-        `flex items-center justify-center gap-2 px-5 py-3 md:px-8 md:py-4 text-sm md:text-base font-bold uppercase tracking-wider transition-all duration-200 ${
+        \`flex items-center justify-center gap-2 px-5 py-3 md:px-8 md:py-4 text-sm md:text-base font-bold uppercase tracking-wider transition-all duration-200 \${
           isActive 
             ? 'bg-amber-400 text-blue-950 shadow-inner' 
             : 'text-blue-100 hover:bg-blue-700 hover:text-white'
-        }`
+        }\`
       }
     >
       <span className="inline-block">{icon}</span>
@@ -112,3 +114,6 @@ function BlockNavLink({ to, icon, text }: { to: string; icon: ReactNode; text: s
     </RouterNavLink>
   );
 }
+`;
+
+fs.writeFileSync('src/components/layout/MainLayout.tsx', fullContent);

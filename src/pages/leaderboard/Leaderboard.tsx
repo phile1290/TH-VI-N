@@ -1,7 +1,15 @@
-import { Trophy, Medal, BookOpen } from 'lucide-react';
-import { mockLeaderboard } from '../../lib/mockData';
+import { useState } from 'react';
+import { Trophy, Medal, BookOpen, Search, UserX } from 'lucide-react';
+import { useData } from '../../contexts/DataContext';
 
 export default function Leaderboard() {
+  const { leaderboard } = useData();
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  const filteredLeaderboard = leaderboard.filter(student => 
+    student.studentName.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    student.className.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Header */}
@@ -17,6 +25,17 @@ export default function Leaderboard() {
         </p>
       </div>
 
+      <div className="max-w-md mx-auto relative">
+        <input 
+          type="text" 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Tìm tên học sinh hoặc lớp..." 
+          className="w-full pl-12 pr-4 py-3 bg-white border-2 border-slate-200 shadow-sm rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all font-medium text-slate-700"
+        />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+      </div>
+
       {/* Leaderboard List */}
       <div className="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
         <div className="p-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-sm font-bold text-slate-400 px-8">
@@ -25,7 +44,7 @@ export default function Leaderboard() {
         </div>
         
         <div className="divide-y divide-slate-50">
-          {mockLeaderboard.map((student, index) => {
+          {filteredLeaderboard.map((student, index) => {
             const isTop3 = index < 3;
             
             return (
@@ -74,7 +93,17 @@ export default function Leaderboard() {
               </div>
             );
           })}
-        </div>
+                </div>
+        
+        {filteredLeaderboard.length === 0 && (
+          <div className="p-12 flex flex-col items-center justify-center text-center">
+            <div className="bg-slate-100 p-4 rounded-full mb-4">
+              <UserX className="w-12 h-12 text-slate-400" />
+            </div>
+            <h3 className="text-xl font-black text-slate-700 mb-2">Không tìm thấy học sinh nào!</h3>
+            <p className="text-slate-500 font-medium">Thử tìm với tên hoặc lớp khác.</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ export default function AdminBooks() {
 
   // Search & Filters
   const [bookSearch, setBookSearch] = useState('');
-  const [bookCategory, setBookCategory] = useState('all');
+  
 
   // Modals
   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
@@ -106,18 +106,15 @@ export default function AdminBooks() {
 
   // Delete Book
   const handleDeleteBook = (id: string, title: string) => {
-    if (window.confirm(`Bạn có chắc chắn muốn xóa cuốn sách "${title}" khỏi hệ thống?`)) {
-      deleteBook(id);
-      showToast(`Đã xóa sách "${title}".`);
-    }
+    deleteBook(id);
+    showToast(`Đã xóa sách "${title}".`);
   };
 
   // Filtered books
   const filteredBooks = books.filter(book => {
     const matchesSearch = book.title.toLowerCase().includes(bookSearch.toLowerCase()) || 
                           book.author.toLowerCase().includes(bookSearch.toLowerCase());
-    const matchesCategory = bookCategory === 'all' || book.category === bookCategory;
-    return matchesSearch && matchesCategory;
+    return matchesSearch;
   });
 
   return (
@@ -161,19 +158,7 @@ export default function AdminBooks() {
               />
             </div>
 
-            {/* Category Filter */}
-            <select
-              value={bookCategory}
-              onChange={(e) => setBookCategory(e.target.value)}
-              className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-700 focus:outline-none focus:border-blue-500 select-auto"
-            >
-              <option value="all">Tất cả thể loại</option>
-              <option value="Truyện thiếu nhi">Truyện thiếu nhi</option>
-              <option value="Truyện cổ tích">Truyện cổ tích</option>
-              <option value="Khám phá khoa học">Khám phá khoa học</option>
-              <option value="Kỹ năng sống">Kỹ năng sống</option>
-              <option value="Lịch sử">Lịch sử</option>
-            </select>
+            
           </div>
 
           {/* Add Book Button */}

@@ -87,10 +87,8 @@ export default function AdminNews() {
 
   // Delete Article
   const handleDelete = (id: string, title: string) => {
-    if (window.confirm(`Bạn có chắc chắn muốn xóa bài viết "${title}"?`)) {
-      deleteArticle(id);
-      showToast(`Đã xóa bài viết "${title}".`);
-    }
+    deleteArticle(id);
+    showToast(`Đã xóa bài viết "${title}".`);
   };
 
   // Filtered articles

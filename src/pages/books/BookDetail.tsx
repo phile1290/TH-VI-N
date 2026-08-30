@@ -132,7 +132,7 @@ export default function BookDetail() {
                 {/* Render nội dung sách, sử dụng CSS white-space để giữ nguyên định dạng xuống dòng */}
                 {book.content ? (
                   <div 
-                    className="editor-content text-lg leading-relaxed text-slate-700 font-medium font-serif prose prose-slate max-w-none"
+                    className="editor-content text-base md:text-[15px] leading-relaxed text-slate-700 font-medium font-serif prose prose-slate max-w-none"
                     dangerouslySetInnerHTML={{ __html: book.content }}
                   />
                 ) : (

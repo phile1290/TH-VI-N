@@ -41,6 +41,9 @@ export default function RichTextEditor({ value, onChange, placeholder, className
         img.removeAttribute('srcset');
         img.removeAttribute('class');
         img.removeAttribute('loading');
+        img.removeAttribute('style');
+        img.removeAttribute('width');
+        img.removeAttribute('height');
       });
       
       // We use document.execCommand to insert the processed HTML so it acts like a normal paste (undoable, inserts at cursor)

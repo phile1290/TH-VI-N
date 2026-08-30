@@ -17,6 +17,7 @@ import { DataProvider } from './contexts/DataContext';
 import AdminBooks from './pages/admin/AdminBooks';
 import AdminOverview from './pages/admin/AdminOverview';
 import AdminNews from './pages/admin/AdminNews';
+import AdminLeaderboard from './pages/admin/AdminLeaderboard';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
               <Route index element={<AdminOverview />} />
               <Route path="books" element={<AdminBooks />} />
               <Route path="news" element={<AdminNews />} />
+              <Route path="leaderboard" element={<AdminLeaderboard />} />
             </Route>
           </Routes>
         </Router>

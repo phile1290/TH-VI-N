@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Filter, BookX } from 'lucide-react';
+import { Search, BookX } from 'lucide-react';
 import { useData } from '../../contexts/DataContext';
 import BookCard from '../../components/ui/BookCard';
 
@@ -49,9 +49,7 @@ export default function Books() {
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
             </div>
-            <button className="p-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl transition-colors shrink-0">
-              <Filter className="w-6 h-6" />
-            </button>
+            
           </div>
         </div>
 

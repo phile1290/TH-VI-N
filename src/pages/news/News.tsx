@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
-import { Calendar, User, Clock, Newspaper, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, User, Clock, Newspaper, ArrowRight, Search, FileX } from 'lucide-react';
 import { mockArticles } from '../../lib/mockData';
 
 export default function News() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const filteredArticles = mockArticles.filter(article => 
+    article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    article.summary.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
       {/* Header Section */}
@@ -17,11 +23,23 @@ export default function News() {
             Cập nhật hoạt động đọc sách, phong trào thi đua và thông báo mới nhất từ Thư viện Mỹ An
           </p>
         </div>
+        <div className="flex-1 w-full md:max-w-xs mt-4 md:mt-0">
+          <div className="relative">
+            <input 
+              type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Tìm kiếm tin tức..." 
+              className="w-full pl-12 pr-4 py-3 bg-white border-2 border-white/50 shadow-sm rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all font-medium text-slate-700"
+            />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+          </div>
+        </div>
       </div>
 
       {/* Articles Grid */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {mockArticles.map((article) => (
+        {filteredArticles.map((article) => (
           <Link
             key={article.id} 
             to={`/news/${article.id}`}
@@ -80,7 +98,17 @@ export default function News() {
             </div>
           </Link>
         ))}
-      </div>
+            </div>
+      
+      {filteredArticles.length === 0 && (
+        <div className="bg-white rounded-[2rem] p-12 shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center">
+          <div className="bg-slate-100 p-4 rounded-full mb-4">
+            <FileX className="w-12 h-12 text-slate-400" />
+          </div>
+          <h3 className="text-xl font-black text-slate-700 mb-2">Không tìm thấy bản tin nào!</h3>
+          <p className="text-slate-500 font-medium">Vui lòng thử lại với từ khóa khác.</p>
+        </div>
+      )}
     </div>
   );
 }

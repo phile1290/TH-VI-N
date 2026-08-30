@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation, Navigate } from 'react-router-dom';
-import { BookCopy, FileText, LogOut, LayoutDashboard, Home, ShieldCheck, Sparkles } from 'lucide-react';
+import { BookCopy, FileText, LogOut, LayoutDashboard, Home, ShieldCheck, Sparkles, Trophy } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function AdminLayout() {
@@ -14,6 +14,7 @@ export default function AdminLayout() {
     { path: '/admin', icon: <LayoutDashboard className="w-5 h-5" />, label: 'Bảng Điều Khiển' },
     { path: '/admin/books', icon: <BookCopy className="w-5 h-5" />, label: 'Quản Lý Sách' },
     { path: '/admin/news', icon: <FileText className="w-5 h-5" />, label: 'Quản Lý Tin Tức' },
+    { path: '/admin/leaderboard', icon: <Trophy className="w-5 h-5" />, label: 'Quản Lý Bảng Vàng' },
   ];
 
   return (

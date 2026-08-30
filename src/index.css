@@ -71,3 +71,16 @@
 .editor-content p, .editor-content div {
   white-space: normal;
 }
+
+
+/* Force images to display properly */
+.editor-content img {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+  opacity: 1 !important;
+  visibility: visible !important;
+  margin: 1.5rem auto !important;
+  border-radius: 0.5rem;
+}
