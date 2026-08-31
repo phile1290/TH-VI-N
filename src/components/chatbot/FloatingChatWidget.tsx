@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, X, MessageCircle, Sparkles, RefreshCw, BookOpen, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useData } from '../../contexts/DataContext';
 
 interface Message {
   id: string;
@@ -16,6 +17,7 @@ const QUICK_SUGGESTIONS = [
 ];
 
 export default function FloatingChatWidget() {
+  const { books } = useData();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -66,7 +68,8 @@ export default function FloatingChatWidget() {
         },
         body: JSON.stringify({ 
           message: userMessage,
-          history: historyPayload
+          history: historyPayload,
+          context: books.map((b) => `- ${b.title} (Tác giả: ${b.author}, Phân loại: ${b.category})`).join('\n')
         }),
       });
 
