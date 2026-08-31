@@ -353,6 +353,9 @@ export default function AdminBooks() {
                       <option value="Khám phá khoa học">Khám phá khoa học</option>
                       <option value="Kỹ năng sống">Kỹ năng sống</option>
                       <option value="Lịch sử">Lịch sử</option>
+                      <option value="Sách giáo khoa">Sách giáo khoa</option>
+                      <option value="Sách giáo viên">Sách giáo viên</option>
+                      <option value="Sách tham khảo">Sách tham khảo</option>
                     </select>
                   </div>
                   <div className="space-y-1.5">

@@ -15,6 +15,9 @@ export default function Books() {
     { id: 'Khám phá khoa học', label: 'Khoa học' },
     { id: 'Kỹ năng sống', label: 'Kỹ năng' },
     { id: 'Lịch sử', label: 'Lịch sử' },
+    { id: 'Sách giáo khoa', label: 'Giáo khoa' },
+    { id: 'Sách giáo viên', label: 'Giáo viên' },
+    { id: 'Sách tham khảo', label: 'Tham khảo' },
   ];
 
   // Hàm filter dữ liệu theo cả Category và Search Query
